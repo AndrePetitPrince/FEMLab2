@@ -160,5 +160,48 @@ print (f())
 print (f(5))
 """
 
+"""
+def f(x=0):
+    return (2 * (x**3))/8.51
+ 
+funkcja = f
+ 
+print (f())
+print (funkcja())
+"""
 
+"""
+def wyswietl(napis):
+    print (napis)
+ 
+def wez_napis_i_cos_z_nim_zrob(napis, zrob):
+    zrob(napis)
+ 
+wez_napis_i_cos_z_nim_zrob("Jakis napis", wyswietl)
+"""
 
+"""
+def policz(jak, liczba1, liczba2):
+    return jak(liczba1, liczba2)
+ 
+def dodaj(x, y):
+    return x+y
+ 
+def podnies_do_potegi(x, y):
+    return x**y
+ 
+def pomnoz(x, y):
+    return x*y
+ 
+def podziel(x, y):
+    #tutaj zamieniamy jedna z liczb
+    #na zmiennoprzecinkowa na 
+    #potrzeby Pyhona2
+    return (x*1.0)/y
+
+def silnia(x):
+    if x==1 or x==0:
+        return 1
+    else:
+        return x*silnia(x-1)
+"""
