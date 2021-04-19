@@ -1,8 +1,11 @@
 import numpy as np
+import matplotlib.pyplot as plt
+from y2 import *
 
+'''
 #4 NumPy
 #4.1 Tworzenie tablic
-#4.1.1 Wymienienie elementów
+#4.1.1 Wymienienie elementï¿½w
 arr = np.array([1, 2, 3, 4, 5])
 print(arr)
 print("\n")
@@ -16,7 +19,7 @@ A = np.array([[1, 2, 3],
 print(A)
 print("\n")
 
-#4.1.2 Generowanie elementów
+#4.1.2 Generowanie elementï¿½w
 v = np.arange(1,7)
 print(v,"\n")
 v = np.arange(-2,7)
@@ -49,7 +52,7 @@ U = np.block([[A],[X]])
 print(U)
 print("\n")
 
-#4.1.4 Mieszanie powyzszych sposobów
+#4.1.4 Mieszanie powyzszych sposobï¿½w
 V = np.block([[
 np.block([
 np.block([[np.linspace(1,3,3)],
@@ -60,7 +63,7 @@ np.ones((3,1))])
 print(V)
 print("\n")
 
-#4.2 Odwo³ywanie sie do elementów tablicy
+#4.2 Odwoï¿½ywanie sie do elementï¿½w tablicy
 print( V[0,2] )
 print( V[3,0] )
 print( V[3,3] )
@@ -73,7 +76,7 @@ print( V[np.ix_([0,2,3],[0,-1])] )
 print( V[3] )
 print("\n")
 
-#4.3 Usuwanie fragmentów macierzy i tablic
+#4.3 Usuwanie fragmentï¿½w macierzy i tablic
 Q = np.delete(V, 2, 0)
 print(Q)
 Q = np.delete(V, 2, 1)
@@ -82,7 +85,7 @@ v = np.arange(1,7)
 print( np.delete(v, 3, 0) )
 print("\n")
 
-#4.4 Sprawdzanie rozmiarów tablic
+#4.4 Sprawdzanie rozmiarï¿½w tablic
 print(np.size(v))
 print(np.shape(v))
 print(np.size(V))
@@ -154,7 +157,7 @@ print(A.conj().T) # hermitowskie sprzezenie macierzy (dla m. zespolonych)
 print(A.conj().transpose())
 print("\n")
 
-#4.6 Operacje porównan i funkcje logiczne
+#4.6 Operacje porï¿½wnan i funkcje logiczne
 print(A)
 print(B)
 print(A == B)
@@ -270,7 +273,7 @@ plt.ylabel('Pozycja')
 plt.title('Nasz pierwszy wykres')
 plt.grid(True)
 
-#5.1.3 Kilka wykresów we wspólnych osiach - Pierwsza wersja
+#5.1.3 Kilka wykresï¿½w we wspï¿½lnych osiach - Pierwsza wersja
 import numpy as np
 import matplotlib.pyplot as plt
 x = np.arange(0.0, 2.0, 0.01)
@@ -284,7 +287,7 @@ plt.ylabel('Pozycja')
 plt.title('Wykres ')
 plt.grid(True)
 
-#5.1.4 Kilka wykresów we wspólnych osiach - Druga wersja
+#5.1.4 Kilka wykresï¿½w we wspï¿½lnych osiach - Druga wersja
 import numpy as np
 import matplotlib.pyplot as plt
 x = np.arange(0.0, 2.0, 0.01)
@@ -301,9 +304,10 @@ plt.grid(True)
 
 #plt.show()
 
-
+'''
 #6 Cwiczenia
 #Zadanie 3
+print("Zadanie 3")
 A = np.block([[
     np.block([[
         np.block([[
@@ -324,17 +328,91 @@ print(A)
 print("\n")
 
 #Zadanie 4
+print("Zadanie 4")
 B=A[1,:]+A[3,:]
 print(B)
 print("\n")
 
 #Zadanie 5
-C=np.max(A,1)
+print("Zadanie 5")
+C = np.array([])
+for i in range(0,np.size(A,1)):
+    C=np.append(C,np.max(A[:,i]))
 print(C)
 print("\n")
 
 #Zadanie 6
-D=np.delete(np.delete(B, 0), (np.size(np.delete(B, 0))-1))
+print("Zadanie 6")
+D=np.delete(B, [0, 5])
 print(D)
 print("\n")
 
+#Zadanie 7
+print("Zadanie 7")
+D[D == 4] = 0
+print(D)
+print("\n")
+
+#Zadanie 8
+print("Zadanie 8")
+E = C[C > min(C)]
+E = E[E < max(C)]
+print(E)
+print("\n")
+
+#Zadanie 9
+print("Zadanie 9")
+print("Wiersze tablicy A z najwieksza wartoscia tablicy: ",A[np.where(A == np.max(A))[0]])
+print("Wiersze tablicy A z najmniejsza wartoscia tablicy: ",A[np.where(A == np.min(A))[0]])
+print("\n")
+
+#Zadanie 10
+print("Zadanie 10")
+print("MnoÅ¼enie tablicowe: ", D * E)
+print("MnoÅ¼enie wektorowe: ", D @ E)
+print("\n")
+
+#Zadanie 11
+print("Zadanie 11")
+def Exercise11(x):
+    m = np.random.randint(1, 11, [x, x])
+    return m, np.trace(m)
+print(Exercise11(10))
+print("\n")
+
+#Zadanie 12
+print("Zadanie 12")
+def Exercise12(m):
+    m = m * (1-np.eye(np.size(m,0), np.size(m,1)))
+    m = m * (1-np.fliplr(np.eye(np.size(m,0), np.size(m,1))))
+    return m
+
+[m, a] = Exercise11(6)
+print(Exercise12(m))
+print("\n")
+
+#Zadanie 13
+print("Zadanie 13")
+def Exercise13(m):
+    suma = 0
+    for i in range(1, np.size(m, 0), 2):
+        suma = suma + np.sum(m[i, :])
+    return suma
+[m, a] = Exercise11(6)
+print(m)
+print(Exercise13(m))
+print("\n")
+
+#Zadanie 14
+print("Zadanie 14")
+y1 = lambda x: np.cos(2*x)
+x = np.arange(-10, 10.1, 0.1)
+plt.plot(x, y1(x), '--r')
+print("\n")
+
+#Zadanie 15
+print("Zadanie 15")
+y = y2(x)
+plt.plot(x, y, '+g')
+plt.show()
+print("\n")
