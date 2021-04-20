@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy import integrate
 from y2 import *
 
 '''
@@ -408,11 +409,47 @@ print("Zadanie 14")
 y1 = lambda x: np.cos(2*x)
 x = np.arange(-10, 10.1, 0.1)
 plt.plot(x, y1(x), '--r')
+#plt.show()
 print("\n")
 
 #Zadanie 15
 print("Zadanie 15")
 y = y2(x)
-plt.plot(x, y, '+g')
-plt.show()
+#plt.plot(x, y, '+g')
+#plt.show()
 print("\n")
+
+#Zadanie 16
+print("Zadanie 16")
+y2_2 = lambda x: np.sin(x) if x<0 else np.sqrt(x)
+print(y2_2(-np.pi/2))
+print(y2_2(4))
+print("\n")
+
+#Zadanie 17
+print("Zadanie 17")
+plt.plot(x, 3 * y1(x) + y, '*b')
+#plt.show()
+
+#Zadanie 18
+print("Zadanie 18")
+mL = np.array([[10, 5, 1, 7],
+               [10, 9, 5, 5],
+               [1, 6, 7, 3],
+               [10, 0, 1, 5]])
+mP = np.array([[34],
+               [44],
+               [25],
+               [27]])
+mx = np.linalg.solve(mL, mP)
+print(mx)
+for i in range (0, np.size(mx)):
+    print(chr(mx[i]+64))
+print("\n")
+
+#Zadanie 19
+print("Zadanie 19")
+x = np.linspace(0, 2 * np.pi, 1000000)
+y = lambda x: np.sin(x)
+result, error = integrate.quad(y, 0, 2*np.pi)
+print(result)
